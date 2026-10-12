@@ -14,10 +14,10 @@ assets/favicon.svg
 All links are relative, so the site works both at
 `https://compu-flair.github.io/well-control-optimization-website/` and on a custom domain.
 
-## Placeholders to fill in
+## Contact details
 
-Search both HTML files for these and replace them:
-`[Company]`, `[Name]`, `[Title]`, `[Background]`, `[Email]`, `[Phone]`, `[LinkedIn]`, `[City]`, `[Country]`, `[Year]`.
+Founders, email, LinkedIn, location and copyright year are set directly in
+`index.html` and `case-study.html`. Edit both files if any of them change.
 
 ## Preview locally
 
