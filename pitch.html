@@ -78,6 +78,49 @@
     }
     .subpoints li::marker { color: var(--ours); }
 
+    /* Portrait screens (phones, tablets held upright): one tall column
+       that fills the screen. Sizes stay in cqw, now of a narrow slide. */
+    @media screen and (max-aspect-ratio: 1/1) {
+      html, body { height: auto; }
+      body { display: block; overflow-x: hidden; overflow-y: auto; }
+      .slide {
+        width: min(100vw, 640px); margin: 0 auto;
+        aspect-ratio: auto; min-height: 100vh; min-height: 100svh;
+        display: flex;
+      }
+      .slide-inner {
+        position: static; flex: 1;
+        display: flex; flex-direction: column; justify-content: center;
+        padding:
+          calc(7cqw + env(safe-area-inset-top)) 6.5cqw
+          calc(7cqw + env(safe-area-inset-bottom));
+      }
+      .slide .brand { font-size: 4.2cqw; gap: 2cqw; }
+      .slide .brand svg { width: 5.4cqw; height: 5.4cqw; }
+      .slide h1 {
+        margin-top: 5cqw;
+        font-size: 7.6cqw; line-height: 1.12;
+        white-space: normal; text-wrap: balance;
+      }
+      .points {
+        margin-top: 5cqw;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: none; grid-auto-flow: row;
+      }
+      .points > li {
+        grid-template-columns: 8.5cqw 1fr; column-gap: 1.5cqw;
+        border-top-width: max(1px, 0.25cqw);
+        padding: 3.2cqw 0 3.4cqw;
+      }
+      .points > li::before { font-size: 4.2cqw; line-height: 1.4; }
+      .points p { margin-top: 0; font-size: 4.1cqw; line-height: 1.45; }
+      .subpoints {
+        margin-top: 1.6cqw; padding-left: 4.5cqw;
+        grid-template-columns: minmax(0, 1fr); row-gap: 0.6cqw;
+        font-size: 3.9cqw; line-height: 1.4;
+      }
+    }
+
     /* Print or save as PDF: one landscape 16:9 page */
     @page { size: 16in 9in; margin: 0; }
     @media print {
