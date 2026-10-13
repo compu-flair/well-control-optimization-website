@@ -22,6 +22,6 @@ Founders, email, LinkedIn, location and copyright year are set directly in
 ## Preview locally
 
 ```
-python3 -m http.server 8000
+python -m http.server 8000
 ```
 then open http://localhost:8000.

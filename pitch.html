@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CompuFlair | Pitch</title>
+  <meta name="description" content="Well control optimization for conventional oil production: higher NPV than the benchmark, several plans at the best NPV, every plan verified in OPM Flow.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* One 16:9 slide that scales with the window. Sizes are in cqw,
+       so 1cqw = 1 % of the slide width (16px on a 1600px slide). */
+    html, body { height: 100%; }
+    body {
+      display: grid; place-items: center;
+      min-height: 100vh; overflow: hidden;
+      background: color-mix(in srgb, var(--ink) 6%, var(--paper));
+    }
+    .slide {
+      container-type: inline-size;
+      width: min(100vw, 177.78vh);
+      aspect-ratio: 16 / 9;
+      background: var(--paper);
+      position: relative; overflow: hidden;
+      font-variant-numeric: normal;
+    }
+    .slide-inner {
+      position: absolute; inset: 0;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      padding: 3.4cqw 5cqw 3cqw;
+    }
+
+    /* Top: brand and the one-line title */
+    .slide .brand { font-size: 1.4cqw; gap: 0.7cqw; justify-self: start; }
+    .slide .brand svg { width: 1.8cqw; height: 1.8cqw; }
+    .slide h1 {
+      margin-top: 1.4cqw;
+      font-size: 3.1cqw; line-height: 1.1; letter-spacing: -0.025em;
+      white-space: nowrap;
+    }
+
+    /* Six points: two columns of three, read down each column */
+    .points {
+      list-style: none; margin: 2.4cqw 0 0; padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(3, auto);
+      align-content: start;
+      grid-auto-flow: column;
+      column-gap: 4.5cqw;
+      counter-reset: point;
+    }
+    .points li {
+      counter-increment: point;
+      display: grid; grid-template-columns: 3.2cqw 1fr; column-gap: 0.8cqw;
+      align-content: start;
+      border-top: 0.12cqw solid var(--rule);
+      padding: 1.4cqw 0 1.6cqw;
+    }
+    .points li::before {
+      content: counter(point, decimal-leading-zero);
+      grid-row: 1 / span 3;
+      font-weight: 700; font-size: 1.5cqw; line-height: 1.3; color: var(--ours);
+    }
+    .points li > * { grid-column: 2; }
+    .points h2 { font-size: 1.75cqw; line-height: 1.25; letter-spacing: -0.01em; }
+    .points p { margin: 0.4cqw 0 0; font-size: 1.25cqw; line-height: 1.4; color: var(--muted); }
+    .points .stat { color: var(--ours); }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5cqw; margin-top: 0.7cqw; }
+    .chips span {
+      font-size: 1.1cqw; font-weight: 500; line-height: 1;
+      padding: 0.45cqw 0.8cqw; border-radius: 99px;
+      background: color-mix(in srgb, var(--ours) 13%, var(--surface));
+      color: var(--ink);
+    }
+
+    /* Print or save as PDF: one landscape 16:9 page */
+    @page { size: 16in 9in; margin: 0; }
+    @media print {
+      html, body { height: auto; }
+      body { display: block; background: var(--paper); }
+      .slide { width: 16in; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <main class="slide">
+    <div class="slide-inner">
+      <a class="brand" href="./" aria-label="CompuFlair home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".55"/><circle cx="12" cy="12" r="2.6" fill="#1f6fb2"/></svg>
+        CompuFlair
+      </a>
+
+      <h1>We optimize well controls for conventional oil production</h1>
+
+      <ol class="points">
+        <li>
+          <p>We return higher NPV than the benchmark. E.g. 7.8% higher NPV for the Norne field.</p>
+        </li>
+        <li>
+          <p>We return several plans that keep the best NPV and improve other objectives like:</p>
+          <div class="chips"><span>lowering water handling</span><span>lowering gas handling</span><span>lowering energy use</span><span>delaying water breakthrough</span></div>
+        </li>
+        <li>
+          <p>We benchmark against Everest ensemble optimization and provide a better uncertainty picture.</p>
+        </li>
+        <li>
+          <p>We return plans you can defend. Every NPV and production profile you receive has been run in OPM Flow.</p>
+        </li>
+        <li>
+          <p>We perform fast what-if screening. Give us a plan, and we return a rough estimate of its NPV, oil, gas, water and energy in seconds. If happy with estimates, we will confirm in OPM Flow.</p>
+        </li>
+      </ol>
+    </div>
+  </main>
+  <script src="assets/js/copy-email.js"></script>
+</body>
+</html>
