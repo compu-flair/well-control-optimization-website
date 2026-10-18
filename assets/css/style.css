@@ -226,6 +226,9 @@ strong { font-weight: 650; }
 }
 .versus-item.ours .versus-value { color: var(--ours); }
 .versus-note { display: block; color: var(--muted); max-width: 40ch; }
+/* Speed: subtitle sits right on the comparison line; extra air before the explanation */
+#speed .section-head { margin-bottom: 0; }
+#speed .split { margin-top: var(--space-l); }
 @media (max-width: 560px) { .versus { grid-template-columns: 1fr; gap: var(--space-l); } }
 
 .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-xl); }
