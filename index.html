@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CompuFlair | Well rate and pressure plans that maximize NPV</title>
-  <meta name="description" content="Well rate and pressure plans that maximize NPV and cut water and gas handling and energy use at the same time, for every realization of your field. Every plan verified in OPM Flow.">
-  <meta property="og:title" content="CompuFlair | Well rate and pressure plans that maximize NPV">
-  <meta property="og:description" content="Optimize NPV, water, gas and energy at once, for every realization of your field.">
+  <title>CompuFlair | A hyper-accurate surrogate, 100000x faster than OPM Flow</title>
+  <meta name="description" content="A hyper-accurate surrogate, 100,000x faster than OPM Flow. Every number on this page comes from OPM Flow.">
+  <meta property="og:title" content="CompuFlair | A hyper-accurate surrogate, 100,000x faster than OPM Flow">
+  <meta property="og:description" content="The surrogate finds the best controls. OPM Flow sets the final NPV, water, gas and energy numbers.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/figures/npv_comparison.png">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -25,8 +25,10 @@
         CompuFlair
       </a>
       <nav class="nav" aria-label="Main">
+        <a href="#speed">Speed</a>
+        <a href="#result">Result</a>
         <a href="#what-you-get">What you get</a>
-        <a href="#results">Results</a>
+        <a href="#about">About</a>
         <a class="nav-cta" href="#contact">Contact</a>
       </nav>
     </div>
@@ -36,11 +38,10 @@
     <section class="hero">
       <div class="wrap">
         <div>
-          <h1>Optimize NPV, water, gas and energy at once, for every realization of your field</h1>
-          <p class="lede">Well rate and pressure plans that maximize NPV and cut water and gas handling and energy use at the same time, with a fraction of the simulation runs a conventional optimization needs. Every plan is verified in OPM Flow.</p>
+          <h1>A hyper-accurate surrogate, 100000x faster than OPM Flow</h1>
+          <p class="lede"><strong>Every number on this page comes from OPM Flow.</strong> The surrogate finds the best controls. Then we run those controls in OPM Flow, and OPM Flow sets the final NPV, water, gas and energy numbers.</p>
           <div class="actions">
             <a class="button" href="#contact">Talk to us</a>
-            <a class="button button-quiet" href="case-study.html">Read the Norne case study</a>
           </div>
         </div>
         <div class="hero-map" aria-hidden="false">
@@ -88,85 +89,193 @@
       </div>
     </section>
 
-    <section class="section" id="why">
+    <section class="section" id="speed">
       <div class="wrap">
         <div class="section-head">
-          <h2>Why it is different</h2>
+          <h2>Speed</h2>
+          <p>The Norne field, on our own CPU:</p>
         </div>
-        <ul class="contrasts">
-          <li>
-            <h3>Several objectives<span class="not">not just NPV</span></h3>
-            <p>A conventional optimization returns one plan, judged by NPV alone. We deliver several plans at the best NPV that also reduce water and gas handling and energy use, or delay water breakthrough, so your team chooses by what NPV does not capture: facilities, operations and risk.</p>
-          </li>
-          <li>
-            <h3>Every realization<span class="not">not just one</span></h3>
-            <p>A conventional optimization of one realization takes hundreds to thousands of simulation runs, so ensembles are rarely optimized realization by realization. We optimize each realization with a small fraction of those runs, and re-optimize new or updated realizations as your history match changes.</p>
-          </li>
-          <li>
-            <h3>Verified in your simulator<span class="not">benchmarked against a tool you trust</span></h3>
-            <p>Every plan and number we deliver is a full OPM Flow run, not a model estimate. Every study includes a conventional Everest optimization of your model, so you can compare, reproduce and audit our results.</p>
-          </li>
-        </ul>
+        <div class="versus">
+          <div class="versus-item">
+            <span class="versus-label">OPM Flow</span>
+            <span class="versus-value">167 seconds</span>
+            <span class="versus-note">per run, from setting the well controls to getting NPV</span>
+          </div>
+          <div class="versus-item ours">
+            <span class="versus-label">Our surrogate</span>
+            <span class="versus-value">1 millisecond</span>
+            <span class="versus-note">on the same CPU</span>
+          </div>
+        </div>
+        <div class="split">
+          <div>
+            <h3>Why this matters</h3>
+            <p>With Everest, more than 5 random starts or smaller learning steps take far too much compute. With our surrogate, we can start from an almost unlimited number of random controls, with much smaller learning steps.</p>
+          </div>
+          <div>
+            <p><strong>It also lets us go beyond NPV.</strong> Conventional solvers are too slow for this. We can keep NPV at its max and also:</p>
+            <ul class="ticks">
+              <li>delay water breakthrough</li>
+              <li>cut gas injected and gas produced</li>
+              <li>cut water injected and water produced</li>
+              <li>use less energy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="numbers">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>The numbers</h2>
+        </div>
+
+        <h3 class="subhead">One optimization round<small>From a random control to an optimized control</small></h3>
+        <div class="versus">
+          <div class="versus-item">
+            <span class="versus-label">Everest</span>
+            <span class="versus-value">1.2 hours</span>
+            <span class="versus-note">even with large learning steps. The exact solver is slow, so the compute cost is high.</span>
+          </div>
+          <div class="versus-item ours">
+            <span class="versus-label">Our surrogate</span>
+            <span class="versus-value">0.48 seconds</span>
+            <span class="versus-note">with learning steps 26x smaller</span>
+          </div>
+        </div>
+
+        <h3 class="subhead">So we searched much more of the control space</h3>
+        <p class="body-text">We ran 100 rounds instead of 5, in only 48 seconds. The same 100 rounds in Everest would take:</p>
+        <dl class="bars">
+          <div class="bar-row ours" style="--w: 0%">
+            <dt><strong>48 seconds</strong><span>Our surrogate, 100 rounds</span></dt>
+            <dd><i></i></dd>
+          </div>
+          <div class="bar-row" style="--w: 3.85%">
+            <dt><strong>120 hours</strong><span>Everest, with its larger steps (26x larger, which is not ideal)</span></dt>
+            <dd><i></i></dd>
+          </div>
+          <div class="bar-row" style="--w: 100%">
+            <dt><strong>3,120 hours</strong><span>Everest, with the same small steps we used</span></dt>
+            <dd><i></i></dd>
+          </div>
+        </dl>
+        <div class="callout">
+          <p><strong>Where 3,120 hours comes from:</strong> small steps follow the NPV surface more closely, so they are less likely to jump over a better plan. But each step moves less, so a round needs about 26x more steps to cover the same ground. One Everest round then takes about 26 × 1.2 = 31.2 hours, and 100 rounds take 100 × 31.2 = 3,120 hours. That is about 130 days of nonstop computing.</p>
+        </div>
+
+        <div class="results-grid cost">
+          <div>
+            <h3 class="subhead">Our total cost: 78 hours, paid once</h3>
+            <p class="body-text">This one-time compute built the surrogate, and it covers all the results on this page. Even with this cost included, we are faster: 78 hours plus 48 seconds of optimization, against 120 hours for 100 Everest rounds with large steps.</p>
+            <p class="body-text">And we can keep using the surrogate with no more training, as long as the history-matched model and the field structure do not change much.</p>
+          </div>
+          <figure class="figure-frame">
+            <img src="assets/figures/new_realization.png" width="1300" height="680" loading="lazy" alt="Bar chart for a new geological realization of Norne: Everest reaches 2,637 million USD NPV in one optimization round of 1.6 hours; the surrogate reaches 3,167 million USD, validated in OPM Flow, from 100 optimization starts in 48 seconds (+20% NPV).">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="result">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>The result: 9.4% more NPV</h2>
+          <p>Norne is a real oil field in the Norwegian Sea, run by Equinor. For 2007–2017, in OPM Flow:</p>
+        </div>
+        <div class="results-grid">
+          <div>
+            <dl class="figures">
+              <div><dt class="bench-figure">$2.76 billion NPV</dt><dd>Everest’s best plan</dd></div>
+              <div><dt>$3.02 billion NPV</dt><dd>Our best plan, with the same oil and handling prices over the same 10 years</dd></div>
+            </dl>
+            <p class="result-gain"><strong>That is 9.4% more, worth $0.26 billion.</strong> This gain is about 17x larger than the surrogate’s error (see <a href="#accuracy">Hyper accuracy</a> below). It is not model noise.</p>
+          </div>
+          <figure class="figure-frame">
+            <img src="assets/figures/npv_comparison.png" width="1300" height="680" loading="lazy" alt="Bar chart: best NPV of five Everest benchmark runs, from 2,546 to 2,765 million USD, and of our best plan, 3,016 million USD.">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="alternatives">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Same max NPV, better everything else</h2>
+          <p>We searched the control space widely. We found <strong>5 other control plans</strong> with the same max NPV (within 0.5%; three of them are even higher). These plans:</p>
+        </div>
+        <div class="results-grid">
+          <ul class="ticks ticks-lg">
+            <li><strong>produce 6–11% less gas</strong> and <strong>inject 5–10% less gas</strong></li>
+            <li><strong>produce 2–5% less water</strong> and <strong>inject 2–6% less water</strong></li>
+            <li><strong>use 4–9% less energy</strong></li>
+            <li><strong>delay field water breakthrough</strong> from month 1 to <strong>month 28–32</strong> (in four of the five plans)</li>
+          </ul>
+          <figure class="figure-frame">
+            <img src="assets/figures/tradeoff_plans.png" width="1300" height="720" loading="lazy" alt="Bar chart of the 5 alternative Norne plans with NPV kept within 0.5%: improvement over the best-NPV plans in oil produced, gas produced, gas injected, water produced, water injected, energy use and energy per unit of oil; bars show the average and dots show each plan.">
+          </figure>
+        </div>
       </div>
     </section>
 
     <section class="section" id="what-you-get">
       <div class="wrap">
         <div class="section-head">
-          <h2>What you get</h2>
+          <h2>What else you get</h2>
         </div>
-        <ul class="deliverables">
-          <li><strong>Higher-NPV plans</strong><span>than the conventional benchmark, for each realization.</span></li>
-          <li><strong>Several plans at the same NPV</strong><span>with less water and gas handling, less energy use, or later water breakthrough.</span></li>
-          <li><strong>The uncertainty picture</strong><span>P10/P50/P90 of the optimal NPV and of each production measure across your ensemble, and how each realization’s best plan performs on the others.</span></li>
-          <li><strong>A study that stays current</strong><span>New or updated realizations re-optimized with a small fraction of the runs.</span></li>
-          <li><strong>What-if screening</strong><span>Send us any schedule, including your current plan, and we return its expected NPV, oil, gas, water and energy; the plans you decide on are confirmed in OPM Flow.</span></li>
+        <ul class="features">
+          <li id="accuracy">
+            <h3>Hyper accuracy</h3>
+            <div>
+              <p>We tested the surrogate on plans it never saw in training. Its NPV is off by only <strong>0.5% on average</strong> compared with OPM Flow (an RMSE of about <strong>$15 million out of about $3,000 million</strong>).</p>
+              <p>Still, we never report the surrogate’s numbers. We run every plan we deliver in OPM Flow, and OPM Flow sets the final numbers. Our surrogate is accurate enough that we are happy to have you rerun its plans the old way.</p>
+              <figure class="figure-frame figure-narrow">
+                <img src="assets/figures/whatif_accuracy.png" width="900" height="840" loading="lazy" alt="Scatter plot of surrogate NPV against OPM Flow NPV on 253 held-out Norne runs; the points lie close to the diagonal, with R² = 0.99 and an average error of 0.5%.">
+              </figure>
+            </div>
+          </li>
+          <li>
+            <h3>A benchmark you already trust</h3>
+            <div>
+              <p>We always run a full conventional Everest optimization on your field and compare our results to it. You get a reference your reservoir team can rerun and audit for every plan.</p>
+            </div>
+          </li>
+          <li>
+            <h3>Every realization optimized, not just one</h3>
+            <div>
+              <p>Our surrogate is very fast. You can optimize NPV and your other goals together, across all your realizations, and get a clearer P10/P50/P90 picture of uncertainty. At more than 100,000x the speed of conventional solvers, we find plans that work across the realizations you trust.</p>
+              <div class="fig-pair">
+                <figure class="figure-frame">
+                  <img src="assets/figures/ensemble_spe1.png" width="1400" height="720" loading="lazy" alt="Example Everest ensemble benchmark with 50 realizations sorted by optimal NPV, showing the best plan for each realization and one robust plan for all realizations, with P10, P50 and P90 lines.">
+                </figure>
+                <figure class="figure-frame">
+                  <img src="assets/figures/everest_ensemble_FOPT.png" width="1300" height="680" loading="lazy" alt="Example Everest ensemble benchmark with 50 realizations: cumulative oil over time for the robust optimized plan, showing the mean and the P90 to P10 range.">
+                </figure>
+              </div>
+            </div>
+          </li>
+          <li>
+            <h3>What-if screening</h3>
+            <div>
+              <p>Put in any well control plan (rates and BHP). In the blink of an eye, 100,000x faster than conventional solvers, you get:</p>
+              <ul class="chips">
+                <li>NPV</li>
+                <li>water injected</li>
+                <li>water produced</li>
+                <li>gas injected</li>
+                <li>gas produced</li>
+                <li>energy used</li>
+                <li>water breakthrough</li>
+              </ul>
+            </div>
+          </li>
         </ul>
-      </div>
-    </section>
-
-    <section class="section results" id="results">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Results on the Norne field model</h2>
-          <p>On the public Norne model (16 wells, 10 years), compared with a conventional Everest optimization with the same economics.</p>
-        </div>
-        <div class="results-grid">
-          <dl class="figures">
-            <div><dt>+7.8 % NPV</dt><dd>over the best benchmark plan</dd></div>
-            <div><dt>6–11 % less gas produced<small>5–10 % less gas injected, 4–9 % less energy</small></dt><dd>in alternative plans that keep the NPV within 0.5 %</dd></div>
-            <div><dt>Water breakthrough from month 1 to month 28–32</dt><dd>in four of five alternative plans</dd></div>
-            <div><dt>Under 100 simulation runs</dt><dd>to optimize a new geological realization</dd></div>
-          </dl>
-          <figure class="figure-frame">
-            <img src="assets/figures/npv_comparison.png" width="1300" height="680" loading="lazy" alt="Bar chart: best NPV of five Everest benchmark runs (2,546 to 2,765 million USD) and our best plan at 2,981 million USD, 7.8 % higher.">
-            <figcaption>Best NPV of each Everest benchmark run (grey) and of our best plan (blue), million USD at illustrative prices.</figcaption>
-          </figure>
-        </div>
-        <p class="results-note">Every number is an OPM Flow result. Prices are illustrative; the relative improvements are the result.</p>
-        <p class="results-more"><a class="button button-quiet" href="case-study.html">Read the full case study</a></p>
-      </div>
-    </section>
-
-    <section class="section" id="how">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>How we work</h2>
-        </div>
-        <ol class="steps">
-          <li><h3>Scope</h3><p>A 20-minute call about your field, your decisions and the measures you want to improve.</p></li>
-          <li><h3>Pilot</h3><p>A short study on one of your fields, with success criteria agreed up front.</p></li>
-          <li><h3>Delivery</h3><p>Plans, production profiles and the benchmark comparison, all as OPM Flow runs your team can rerun.</p></li>
-        </ol>
       </div>
     </section>
 
     <section class="section" id="about">
       <div class="wrap two-up">
-        <div>
-          <h2>Who it is for</h2>
-          <p>Reservoir engineering and asset teams who own the development plan and its uncertainty, and the reservoir-study consultancies who support them.</p>
-        </div>
         <div>
           <h2>About</h2>
           <p>CompuFlair is founded by Ardavan Borzou, PhD, a physicist and data scientist building physics-based neural networks, and Razie Yousefi, PhD, also a physicist and data scientist.</p>
@@ -189,7 +298,6 @@
   <footer class="site-footer">
     <div class="wrap">
       <p class="row"><span>© 2026 CompuFlair</span><span>Houston, TX, USA</span><a href="mailto:support@compu-flair.com">support@compu-flair.com</a></p>
-      <p>OPM Flow and Everest are open-source projects; Norne is a public benchmark model released by Equinor and NTNU. Their mention does not imply endorsement.</p>
     </div>
   </footer>
   <script src="assets/js/copy-email.js"></script>
