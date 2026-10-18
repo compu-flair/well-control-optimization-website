@@ -167,8 +167,8 @@
 
         <div class="results-grid cost">
           <div>
-            <h3 class="subhead">Our total cost: 78 hours, paid once</h3>
-            <p class="body-text">This one-time compute built the surrogate, and it covers all the results on this page. Even with this cost included, we are faster: 78 hours plus 48 seconds of optimization, against 120 hours for 100 Everest rounds with large steps.</p>
+            <h3 class="subhead">Training cost: 11 hours on only 1 CPU core, <b>paid once upfront</b></h3>
+            <p class="body-text">This one-time compute built the surrogate, and it covers all the results on this page. Even with this cost included, we are faster: 11 hours plus 48 seconds of optimization, against 120 hours for 100 Everest rounds with large steps.</p>
             <p class="body-text">And we can keep using the surrogate with no more training, as long as the history-matched model and the field structure do not change much.</p>
           </div>
           <figure class="figure-frame">
@@ -181,16 +181,16 @@
     <section class="section" id="result">
       <div class="wrap">
         <div class="section-head">
-          <h2>The result: 9.4% more NPV</h2>
+          <h2>The result: 9.1% more NPV in the base geology</h2>
           <p>Norne is a real oil field in the Norwegian Sea, run by Equinor. For 2007–2017, in OPM Flow:</p>
         </div>
         <div class="results-grid">
           <div>
             <dl class="figures">
-              <div><dt class="bench-figure">$2.76 billion NPV</dt><dd>Everest’s best plan</dd></div>
+              <div><dt class="bench-figure">$2.77 billion NPV</dt><dd>Everest’s best plan</dd></div>
               <div><dt>$3.02 billion NPV</dt><dd>Our best plan, with the same oil and handling prices over the same 10 years</dd></div>
             </dl>
-            <p class="result-gain"><strong>That is 9.4% more, worth $0.26 billion.</strong> This gain is about 17x larger than the surrogate’s error (see <a href="#accuracy">Hyper accuracy</a> below). It is not model noise.</p>
+            <p class="result-gain"><strong>That is 9.1% more, worth $0.26 billion.</strong> This number comes from an OPM Flow run of our plan, not from the surrogate’s prediction, so the surrogate’s 0.5% error (see <a href="#accuracy">Hyper accuracy</a> below) does not affect it.</p>
           </div>
           <figure class="figure-frame">
             <img src="assets/figures/npv_comparison.png" width="1300" height="680" loading="lazy" alt="Bar chart: best NPV of five Everest benchmark runs, from 2,546 to 2,765 million USD, and of our best plan, 3,016 million USD.">
@@ -286,18 +286,18 @@
     <section class="section contact" id="contact">
       <div class="wrap">
         <h2>To discuss your field</h2>
+        <p>Send us an email or a LinkedIn message with a few time slots when you are available, and we will pick one and send a Google Meet link.</p>
         <ul class="contact-lines">
           <li><a href="mailto:support@compu-flair.com">support@compu-flair.com</a></li>
           <li><a href="https://www.linkedin.com/in/ardavan-borzou" rel="noopener">LinkedIn</a></li>
         </ul>
-        <a class="button" href="mailto:support@compu-flair.com?subject=Book%20a%2020-minute%20call">Book a 20-minute call</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
-      <p class="row"><span>© 2026 CompuFlair</span><span>Houston, TX, USA</span><a href="mailto:support@compu-flair.com">support@compu-flair.com</a></p>
+      <p class="row"><span>© 2026 CompuFlair. All rights reserved.</span><span>Houston, TX, USA</span></p>
     </div>
   </footer>
   <script src="assets/js/copy-email.js"></script>

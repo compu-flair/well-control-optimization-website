@@ -324,10 +324,10 @@ strong { font-weight: 650; }
 /* Contact */
 .contact { background: var(--ink); color: var(--paper); border-bottom: 0; }
 .contact h2 { max-width: 20ch; }
-.contact p { color: color-mix(in srgb, var(--paper) 78%, transparent); font-size: 1.12rem; margin: 20px 0 32px; }
+.contact p { color: color-mix(in srgb, var(--paper) 78%, transparent); font-size: 1.12rem; max-width: var(--measure); margin: var(--space-m) 0 0; }
 .contact a:not(.button) { color: var(--paper); }
 .contact .button { background: var(--paper); color: var(--ink); }
-.contact-lines { list-style: none; margin: var(--space-l) 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 1.1rem; }
+.contact-lines { list-style: none; margin: var(--space-l) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 1.1rem; }
 
 /* Footer */
 .site-footer { padding: var(--space-l) 0 var(--space-xl); color: var(--muted); font-size: 0.92rem; }
