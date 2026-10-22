@@ -110,7 +110,7 @@
         <div class="split">
           <div>
             <h3>Why this matters</h3>
-            <p>With Everest, more than 5 random starts or smaller learning steps take far too much compute. With our surrogate, we can start from an almost unlimited number of random controls, with much smaller learning steps.</p>
+            <p>Everest is held back by the cost of each OPM Flow run: more than 5 random starts, or smaller learning steps, take far too much compute. Our surrogate does not replace Everest. It helps Everest search much more of the control space, from an almost unlimited number of random starts, with much smaller learning steps.</p>
           </div>
           <div>
             <p><strong>It also lets us go beyond NPV.</strong> Conventional solvers are too slow for this. We can keep NPV at its max and also:</p>
@@ -134,41 +134,41 @@
         <h3 class="subhead">One optimization round<small>From a random control to an optimized control</small></h3>
         <div class="versus">
           <div class="versus-item">
-            <span class="versus-label">Everest</span>
+            <span class="versus-label">Everest+OPM</span>
             <span class="versus-value">1.2 hours</span>
             <span class="versus-note">even with large learning steps. The exact solver is slow, so the compute cost is high.</span>
           </div>
           <div class="versus-item ours">
-            <span class="versus-label">Our surrogate</span>
+            <span class="versus-label">Everest+Surrogate</span>
             <span class="versus-value">0.48 seconds</span>
             <span class="versus-note">with learning steps 26x smaller</span>
           </div>
         </div>
 
-        <h3 class="subhead">So we searched much more of the control space</h3>
-        <p class="body-text">We ran 100 rounds instead of 5, in only <b>48 seconds</b>. The same 100 rounds in Everest would take:</p>
+        <h3 class="subhead">So Everest can search much more of the control space</h3>
+        <p class="body-text">Everest+Surrogate ran 100 rounds instead of 5, in only <b>48 seconds</b>. The same 100 rounds with Everest+OPM would take:</p>
         <dl class="bars">
           <div class="bar-row" style="--w: 3.85%">
-            <dt><strong>120 hours</strong><span>Everest, with its larger steps (26x larger, which is not ideal)</span></dt>
+            <dt><strong>120 hours</strong><span>Everest+OPM, with its larger steps (26x larger, which is not ideal)</span></dt>
             <dd><i></i></dd>
           </div>
           <div class="bar-row" style="--w: 100%">
-            <dt><strong>3,120 hours</strong><span>Everest, with the same small steps we used</span></dt>
+            <dt><strong>3,120 hours</strong><span>Everest+OPM, with the same small steps as Everest+Surrogate</span></dt>
             <dd><i></i></dd>
           </div>
         </dl>
         <div class="callout">
-          <p><strong>Where 3,120 hours comes from:</strong> small steps follow the NPV surface more closely, so they are less likely to jump over a better plan. But each step moves less, so a round needs about 26x more steps to cover the same ground. One Everest round then takes about 26 × 1.2 = 31.2 hours, and 100 rounds take 100 × 31.2 = 3,120 hours. That is about 130 days of nonstop computing.</p>
+          <p><strong>Where 3,120 hours comes from:</strong> small steps follow the NPV surface more closely, so they are less likely to jump over a better plan. But each step moves less, so a round needs about 26x more steps to cover the same ground. One Everest+OPM round then takes about 26 × 1.2 = 31.2 hours, and 100 rounds take 100 × 31.2 = 3,120 hours. That is about 130 days of nonstop computing.</p>
         </div>
 
         <div class="results-grid cost">
           <div>
             <h3 class="subhead">Training cost: 11 hours on only 1 CPU core, <b>paid once upfront</b></h3>
-            <p class="body-text">This one-time compute built the surrogate, and it covers all the results on this page. Even with this cost included, we are faster: 11 hours plus 48 seconds of optimization, against 120 hours for 100 Everest rounds with large steps.</p>
+            <p class="body-text">This one-time compute built the surrogate, and it covers all the results on this page. Even with this cost included, the search is faster: 11 hours plus 48 seconds of optimization, against 120 hours for 100 Everest+OPM rounds with large steps.</p>
             <p class="body-text">And we can keep using the surrogate with no more training, as long as the history-matched model and the field structure do not change much.</p>
           </div>
           <figure class="figure-frame">
-            <img src="assets/figures/new_realization.png" width="1300" height="680" loading="lazy" alt="Bar chart for a new geological realization of Norne: Everest reaches 2,637 million USD NPV in one optimization round of 1.6 hours; the surrogate reaches 3,167 million USD, validated in OPM Flow, from 100 optimization starts in 48 seconds (+20% NPV).">
+            <img src="assets/figures/new_realization.png" width="1300" height="680" loading="lazy" alt="Bar chart for a new geological realization of Norne: Everest+OPM reaches 2,637 million USD NPV in one optimization round of 1.6 hours; Everest+Surrogate reaches 3,167 million USD, validated in OPM Flow, from 100 optimization starts in 48 seconds (+20% NPV).">
           </figure>
         </div>
       </div>
@@ -183,13 +183,13 @@
         <div class="results-grid">
           <div>
             <dl class="figures">
-              <div><dt class="bench-figure">$2.77 billion NPV</dt><dd>Everest’s best plan</dd></div>
-              <div><dt>$3.02 billion NPV</dt><dd>Our best plan, with the same oil and handling prices over the same 10 years</dd></div>
+              <div><dt class="bench-figure">$2.77 billion NPV</dt><dd>Best plan from Everest+OPM</dd></div>
+              <div><dt>$3.02 billion NPV</dt><dd>Best plan from Everest+Surrogate, with the same oil and handling prices over the same 10 years</dd></div>
             </dl>
             <p class="result-gain"><strong>That is 9.1% more, worth $0.26 billion.</strong> This number comes from an OPM Flow run of our plan, not from the surrogate’s prediction, so the surrogate’s 0.5% error (see <a href="#accuracy">Hyper accuracy</a> below) does not affect it.</p>
           </div>
           <figure class="figure-frame">
-            <img src="assets/figures/npv_comparison.png" width="1300" height="680" loading="lazy" alt="Bar chart: best NPV of five Everest benchmark runs, from 2,546 to 2,765 million USD, and of our best plan, 3,016 million USD.">
+            <img src="assets/figures/npv_comparison.png" width="1300" height="680" loading="lazy" alt="Bar chart: best NPV of five Everest+OPM runs, from 2,546 to 2,765 million USD, and of the best Everest+Surrogate plan, 3,016 million USD.">
           </figure>
         </div>
       </div>
@@ -234,7 +234,7 @@
           <li>
             <h3>A benchmark you already trust</h3>
             <div>
-              <p>We always run a full conventional Everest optimization on your field and compare our results to it. You get a reference your reservoir team can rerun and audit for every plan.</p>
+              <p>We always run a full Everest+OPM optimization on your field too, so you can see exactly how much more Everest+Surrogate finds. You get a reference your reservoir team can rerun and audit for every plan.</p>
             </div>
           </li>
           <li>
